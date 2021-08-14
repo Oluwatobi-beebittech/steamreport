@@ -1,9 +1,19 @@
 import React, { Component } from "react";
+import auth from "../auth/auth";
 
 class Login extends Component {
   constructor(props) {
     super(props);
+    this.handleLogin = this.handleLogin.bind(this);
   }
+
+  handleLogin(event) {
+    event.preventDefault();
+    auth.login(() => {
+      this.props.history.push("/dashboard");
+    });
+  }
+
   render() {
     return (
       <div className="h-screen bg-blue-900">
@@ -71,7 +81,7 @@ class Login extends Component {
                 <div className="text-center">
                   <button
                     className="bg-blue-700 text-white font-medium text-md px-3 py-2 rounded-md"
-                    type="submit"
+                    onClick={this.handleLogin}
                   >
                     Sign in
                   </button>
