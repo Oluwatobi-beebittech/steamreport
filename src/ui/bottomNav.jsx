@@ -15,7 +15,6 @@ const useStyles = makeStyles({
     width: "85vw",
     height: "80px",
     backgroundColor: "#eff6ff",
-    overflowX: "scroll",
     marginLeft: "auto",
     marginRight: "auto",
   },
