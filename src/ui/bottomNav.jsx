@@ -12,9 +12,12 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
-    width: "100vw",
+    width: "85vw",
+    height: "80px",
     backgroundColor: "#eff6ff",
     overflowX: "scroll",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
 });
 
@@ -30,7 +33,7 @@ export default function MobileBottomNavigation(props) {
   return (
     <React.Fragment>
       {props.children}
-      <div className="fixed left-0 bottom-0">
+      <div className="fixed bottom-0 left-0 w-full bg-blue-50">
         <BottomNavigation
           value={value}
           onChange={(event, newValue) => {
