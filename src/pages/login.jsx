@@ -10,7 +10,7 @@ class Login extends Component {
   handleLogin(event) {
     event.preventDefault();
     auth.login(() => {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/account/dashboard");
     });
   }
 
@@ -80,7 +80,7 @@ class Login extends Component {
                 </div>
                 <div className="text-center">
                   <button
-                    className="bg-blue-700 text-white font-medium text-md px-3 py-2 rounded-md"
+                    className="bg-blue-700 hover:bg-blue-900 text-white font-medium text-md px-3 py-2 rounded-md"
                     onClick={this.handleLogin}
                   >
                     Sign in

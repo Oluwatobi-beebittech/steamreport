@@ -10,7 +10,7 @@ function App() {
   return (
     <Switch>
       <Route exact path="/" component={Login} />
-      <ProtectedRoute exact path="/dashboard" component={Index} />
+      <ProtectedRoute exact path="/account/*" component={Index} />
       <Route path="*" component={NotFound} />
     </Switch>
   );
