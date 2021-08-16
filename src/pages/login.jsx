@@ -68,7 +68,7 @@ class Login extends Component {
                 </div>
                 <div>
                   <a
-                    href="#"
+                    href="https://oluwatobiakanji.com"
                     className="text-blue-600 text-sm font-medium md:ml-20 ml-10"
                   >
                     Forgot Password?

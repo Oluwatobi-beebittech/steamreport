@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Navigation from "../../ui/mainNav";
-import { Switch, Route, Router } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import ProtectedRoute from "../../auth/protectedRoute";
 import Dashboard from "./dashboard";
 import Settings from "./settings";

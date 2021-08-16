@@ -20,7 +20,7 @@ import SendTwoToneIcon from "@material-ui/icons/SendTwoTone";
 import CallReceivedTwoToneIcon from "@material-ui/icons/CallReceivedTwoTone";
 import SettingsInputComponentTwoToneIcon from "@material-ui/icons/SettingsInputComponentTwoTone";
 import NotificationsNoneTwoToneIcon from "@material-ui/icons/NotificationsNoneTwoTone";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
