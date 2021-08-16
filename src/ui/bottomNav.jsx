@@ -10,15 +10,20 @@ import SettingsInputComponentTwoToneIcon from "@material-ui/icons/SettingsInputC
 import NotificationsNoneTwoToneIcon from "@material-ui/icons/NotificationsNoneTwoTone";
 import { useHistory } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
+import AppBar from "@material-ui/core/AppBar";
 
 const useStyles = makeStyles({
   root: {
     width: "80%",
     height: "80px",
-    backgroundColor: "#eff6ff",
+    backgroundColor: "#dbeafe",
     marginLeft: "auto",
     marginRight: "auto",
   },
+  colorPrimary: {
+    backgroundColor: "#1e3a8a",
+  },
+  textPrimary: { color: "#1e3a8a" },
 });
 
 export default function MobileBottomNavigation(props) {
@@ -32,6 +37,9 @@ export default function MobileBottomNavigation(props) {
   const history = useHistory();
   return (
     <React.Fragment>
+      <AppBar position="fixed" color="primary" className={classes.colorPrimary}>
+        <h1 className="font-medium text-xl ml-5">SteamReport</h1>
+      </AppBar>
       {props.children}
 
       <div className="fixed bottom-0 right-5 mb-24">
@@ -43,7 +51,7 @@ export default function MobileBottomNavigation(props) {
           <SettingsInputComponentTwoToneIcon />
         </Fab>
       </div>
-      <div className="fixed bottom-0 left-0 w-full bg-blue-50">
+      <div className="fixed bottom-0 left-0 w-full bg-blue-100">
         <BottomNavigation
           value={value}
           onChange={(event, newValue) => {
@@ -55,6 +63,7 @@ export default function MobileBottomNavigation(props) {
             label="Dashboard"
             icon={<DashboardTwoToneIcon />}
             onClick={() => history.push("/account/dashboard")}
+            className="text-red-900"
           />
           <BottomNavigationAction
             label="Send"
