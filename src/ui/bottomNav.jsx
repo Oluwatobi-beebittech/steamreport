@@ -9,10 +9,11 @@ import CallReceivedTwoToneIcon from "@material-ui/icons/CallReceivedTwoTone";
 import SettingsInputComponentTwoToneIcon from "@material-ui/icons/SettingsInputComponentTwoTone";
 import NotificationsNoneTwoToneIcon from "@material-ui/icons/NotificationsNoneTwoTone";
 import { useHistory } from "react-router-dom";
+import Fab from "@material-ui/core/Fab";
 
 const useStyles = makeStyles({
   root: {
-    width: "85vw",
+    width: "80%",
     height: "80px",
     backgroundColor: "#eff6ff",
     marginLeft: "auto",
@@ -32,6 +33,16 @@ export default function MobileBottomNavigation(props) {
   return (
     <React.Fragment>
       {props.children}
+
+      <div className="fixed bottom-0 right-5 mb-24">
+        <Fab
+          color="primary"
+          aria-label="add"
+          onClick={() => history.push("/account/settings")}
+        >
+          <SettingsInputComponentTwoToneIcon />
+        </Fab>
+      </div>
       <div className="fixed bottom-0 left-0 w-full bg-blue-50">
         <BottomNavigation
           value={value}
@@ -55,11 +66,11 @@ export default function MobileBottomNavigation(props) {
             icon={<CallReceivedTwoToneIcon />}
             onClick={() => history.push("/account/fetch")}
           />
-          <BottomNavigationAction
-            label="Settings"
+          {/* <BottomNavigationAction
+            label="More"
             icon={<SettingsInputComponentTwoToneIcon />}
             onClick={() => history.push("/account/settings")}
-          />
+          /> */}
           <BottomNavigationAction
             label="Notifications"
             icon={notificationIcon}
