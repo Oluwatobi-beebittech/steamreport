@@ -13,7 +13,7 @@ export default function Index() {
   return (
     <div>
       <Navigation>
-        <div className="">
+        <div className="mt-10 w-10/12 mx-auto md:w-full md:mt-5">
           <Switch>
             <ProtectedRoute
               exact
