@@ -3,6 +3,14 @@ import SendTwoToneIcon from "@material-ui/icons/SendTwoTone";
 import Switch from "@material-ui/core/Switch";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import SendReportData from "../../data/sendReport";
+import loggedInThrustlead from "../../instances/loggedInThrustlead";
 
 class SendReport extends Component {
   constructor(props) {
@@ -11,15 +19,21 @@ class SendReport extends Component {
       switchChecked: true,
       thrustlead: "",
       thrustleadAssistant: "",
+      school: "",
+      selectedDate: new Date(),
     };
     this.handleSwitchChange = this.handleSwitchChange.bind(this);
     this.handleThrustleadChange = this.handleThrustleadChange.bind(this);
     this.handleThrustleadAssistantChange = this.handleThrustleadAssistantChange.bind(
       this
     );
-
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleSchoolChange = this.handleSchoolChange.bind(this);
     /*Dummy*/
-    this.thrustleads = ["Oluwatobi Akanji", "Alfred Musa"];
+    const send = new SendReportData(loggedInThrustlead.getLocation());
+    this.thrustleads = send.getThrustleads();
+    this.schools = send.getSchools();
+
     this.thrustleadAssistant = ["None", ...this.thrustleads];
   }
 
@@ -34,6 +48,13 @@ class SendReport extends Component {
     this.setState({ thrustleadAssistant: e.target.value });
   }
 
+  handleDateChange(date) {
+    this.setState({ selectedDate: date });
+  }
+
+  handleSchoolChange(e) {
+    this.setState({ school: e.target.value });
+  }
   render() {
     return (
       <React.Fragment>
@@ -108,6 +129,42 @@ class SendReport extends Component {
                   </TextField>
                 </div>
                 <div>
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                      id="date-picker-dialog"
+                      label="Report Date"
+                      format="dd/MM/yyyy"
+                      value={this.state.selectedDate}
+                      onChange={this.handleDateChange}
+                      KeyboardButtonProps={{
+                        "aria-label": "change date",
+                      }}
+                    />
+                  </MuiPickersUtilsProvider>
+                </div>
+                <div>
+                  <TextField
+                    id="outlined-select-partner"
+                    select
+                    label="Partner School"
+                    value={
+                      this.state.school === ""
+                        ? this.schools[0]
+                        : this.state.school
+                    }
+                    onChange={this.handleSchoolChange}
+                    helperText="Select the partner school"
+                    variant="outlined"
+                    className="md:w-1/2 w-full"
+                  >
+                    {this.schools.map((school) => (
+                      <MenuItem key={school} value={school}>
+                        {school}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </div>
+                <div>
                   <TextField
                     id="outlined-select-term"
                     select
@@ -153,16 +210,16 @@ class SendReport extends Component {
                 </div>
                 <div>
                   <TextField
-                    id="outlined-select-partner"
+                    id="outlined-select-class"
                     select
-                    label="Partner School"
+                    label="Class"
                     value={
                       this.state.thrustlead === ""
                         ? this.thrustleads[0]
                         : this.state.thrustlead
                     }
                     onChange={this.handleThrustleadChange}
-                    helperText="Select the partner school"
+                    helperText="Select the class"
                     variant="outlined"
                     className="md:w-1/2 w-full"
                   >
@@ -172,6 +229,42 @@ class SendReport extends Component {
                       </MenuItem>
                     ))}
                   </TextField>
+                </div>
+
+                <div>
+                  <TextField
+                    id="outlined-minutes"
+                    label="Minutes Spent"
+                    value={this.state.thrustlead}
+                    onChange={this.handleThrustleadChange}
+                    helperText="Provide the time spent in minutes for the class"
+                    variant="outlined"
+                    className="md:w-1/2 w-full"
+                  />
+                </div>
+                <div>
+                  <TextField
+                    id="outlined-topic"
+                    label="Topic"
+                    value={this.state.thrustlead}
+                    onChange={this.handleThrustleadChange}
+                    helperText="Provide the topic focused on in the class"
+                    variant="outlined"
+                    className="md:w-1/2 w-full"
+                  />
+                </div>
+                <div>
+                  <TextField
+                    id="outlined-behavioural-objectives"
+                    label="Behavioural Objectives"
+                    multiline
+                    rows={4}
+                    value={this.state.thrustlead}
+                    onChange={this.handleThrustleadChange}
+                    helperText="Provide the objectives outlined for the class' session"
+                    variant="outlined"
+                    className="md:w-1/2 w-full"
+                  />
                 </div>
               </div>
 
