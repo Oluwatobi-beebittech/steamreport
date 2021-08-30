@@ -1,3 +1,5 @@
+import thrustlead from "../instances/loggedInThrustlead";
+
 class Auth {
   constructor() {
     this.authenticated = false;
@@ -5,6 +7,8 @@ class Auth {
 
   login(callback) {
     this.authenticated = true;
+    
+    thrustlead.setLocation("kano");
     callback();
   }
 
